@@ -12,17 +12,25 @@ public class PlayerController : MonoBehaviour
    private float horizontalInput;
    private float verticalInput;
 
+
+
+
     public Vector3 jump;
     public float jumpSpeed = 0.5f;
     public bool isGrounded;
     Rigidbody rb;
     public AudioSource JumpSound;
+    private GameObject[] objs;
+    public ParticleSystem CoinGet;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 0.75f, 0.0f);
+        objs = GameObject.FindGameObjectsWithTag("Coin");
+        
     }
 
     void OnCollisionStay()
@@ -49,6 +57,15 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
             JumpSound.Play();
 
+        }
+    }
+
+    // Code that activates sparkles upon collecting a coin
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Coin")
+        {
+            CoinGet.Play();
         }
     }
 }

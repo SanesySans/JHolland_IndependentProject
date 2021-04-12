@@ -23,7 +23,7 @@ public class PencilRespawn : MonoBehaviour
         if (other.tag == "Player")
         {
             Manager.PositionPlayer();
-
+            GameObject.Find("Death").GetComponent<ParticleSystem>().Play();
             foreach (GameObject obj in objs)
             {
                 if (obj.CompareTag("Coin"))

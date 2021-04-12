@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootPencil : MonoBehaviour
 {
-    private float Ypos1 = 1.5f;
+    private float Ypos1 = .5f;
     private float Ypos2 = 3f;
     private float randomTime1 = 0.5f;
     private float randomTime2 = 2f;

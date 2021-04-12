@@ -7,9 +7,12 @@ public class PlayerRespawn : MonoBehaviour
 
     private GameObject[] objs;
 
+
+
     private void Start()
     {
         objs = GameObject.FindGameObjectsWithTag("Coin");
+
     }
 
 
@@ -18,7 +21,7 @@ public class PlayerRespawn : MonoBehaviour
         if (other.tag == "Player")
         {
             gameManager.PositionPlayer();
-
+            GameObject.Find("Death").GetComponent<ParticleSystem>().Play();
             foreach (GameObject obj in objs)
             {
                 if (obj.CompareTag("Coin"))
