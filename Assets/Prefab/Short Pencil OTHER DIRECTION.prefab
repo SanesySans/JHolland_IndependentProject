@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 9010811951197205903}
   - component: {fileID: 1185485581513420970}
   m_Layer: 0
-  m_Name: Short Pencil 1
-  m_TagString: Untagged
+  m_Name: Short Pencil OTHER DIRECTION
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

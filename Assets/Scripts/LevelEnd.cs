@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelEnd : MonoBehaviour
 {
@@ -16,11 +17,20 @@ public class LevelEnd : MonoBehaviour
         {
             levelFinishUI.SetActive(true);
            endScoreText.GetComponent<Text>().text = "Score: " + ScoringSystem.theScore;
+            ScoringSystem.theScore = 0;
             Time.timeScale = 0f;
         }
     }
 
+    public void NextLevel()
+    {
+        SceneManager.LoadScene("SecondLevel");
+    }
 
+    public void PreviousLevel()
+    {
+        SceneManager.LoadScene("FirstLevel");
+    }
 
     public void RestartLevel()
     {

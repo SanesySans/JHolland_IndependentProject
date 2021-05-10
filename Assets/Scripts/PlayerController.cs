@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
    private float horizontalInput;
    private float verticalInput;
 
-
+    bool hasPowerUp = false;
 
 
     public Vector3 jump;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 0.75f, 0.0f);
         objs = GameObject.FindGameObjectsWithTag("Coin");
-        
+        speed = 5.0f;
     }
 
     void OnCollisionStay()
@@ -67,6 +67,23 @@ public class PlayerController : MonoBehaviour
         {
             CoinGet.Play();
         }
+
+        if (other.CompareTag("PowerUp"))
+        {
+            hasPowerUp = true;
+            speed = 10.0f;
+            turnSpeed = 180.0f;
+            StartCoroutine(PowerUpCountdown());
+            
+        }
+    }
+
+    IEnumerator PowerUpCountdown()
+    {
+        yield return new WaitForSeconds(8);
+        hasPowerUp = false;
+        speed = 5.0f;
+        turnSpeed = 90.0f;
     }
 }
 

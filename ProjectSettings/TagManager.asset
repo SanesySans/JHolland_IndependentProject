@@ -8,6 +8,9 @@ TagManager:
   - gameManager
   - Manager2
   - Falling
+  - PowerUp
+  - Obstacle
+  - Enemy
   layers:
   - Default
   - TransparentFX
