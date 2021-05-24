@@ -6,11 +6,10 @@ public class PencilRespawn : MonoBehaviour
 {
     private GameObject gameManager2;
     private GameObject[] objs;
-
     private GameObject[] Power;
-
+   // private GameObject PlayerContrl;
     private Manager2 Manager;
-
+  
 
     private void Start()
     {
@@ -18,33 +17,38 @@ public class PencilRespawn : MonoBehaviour
         objs = GameObject.FindGameObjectsWithTag("Coin");
         Manager = gameManager2.GetComponent<Manager2>();
         Power = GameObject.FindGameObjectsWithTag("PowerUp");
+
+     //   PlayerContrl = GameObject.Find("PlayerCapsule");
     }
 
 
     void OnTriggerEnter(Collider other)
     {
+        //The script below, if activated, allows for the powerup to give the player invulnerability. It is unused.
+        //  if (!PlayerContrl.GetComponent<PlayerController>().Invuln)
+        // {
         if (other.tag == "Player")
-        {
-            DestroyEnemy();
-            Manager.PositionPlayer();
-            RespawnPowerup();
-            GameObject.Find("Death").GetComponent<ParticleSystem>().Play();
-            foreach (GameObject obj in objs)
             {
-                if (obj.CompareTag("Coin"))
+                DestroyEnemy();
+                RespawnPowerup();
+                RespawnPowerup();
+                Manager.PositionPlayer();
+                GameObject.Find("Death").GetComponent<ParticleSystem>().Play();
+                foreach (GameObject obj in objs)
                 {
-                    obj.SetActive(true);
-                    ScoringSystem.theScore = 0;
+                    if (obj.CompareTag("Coin"))
+                    {
+                        obj.SetActive(true);
+                        ScoringSystem.theScore = 0;
+                    }
                 }
-            }
-            
-            
+        // }
         }
 
     }
-
     void RespawnPowerup()
     {
+
         foreach (GameObject Powerup in Power)
         {
             if (Powerup.CompareTag("PowerUp"))
@@ -63,4 +67,5 @@ public class PencilRespawn : MonoBehaviour
             Destroy(enemy);
         }
     }
+
 }

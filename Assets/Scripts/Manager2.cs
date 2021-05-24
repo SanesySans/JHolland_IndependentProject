@@ -9,6 +9,7 @@ public class Manager2 : MonoBehaviour
     public GameObject player;
     public GameObject Wall;
     private GameObject[] objs;
+    private GameObject[] Power;
 
     public void PositionPlayer()
     {
@@ -16,6 +17,33 @@ public class Manager2 : MonoBehaviour
         player.transform.rotation = spawnPoint.rotation;
         Wall.transform.position = WallRespawn.position;
         Wall.transform.rotation = WallRespawn.rotation;
+        CoinRespawn();
+        RespawnPowerup();
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        objs = GameObject.FindGameObjectsWithTag("Coin");
+        Power = GameObject.FindGameObjectsWithTag("PowerUp");
+    }
+
+    void RespawnPowerup()
+    {
+
+        foreach (GameObject Powerup in Power)
+        {
+            if (Powerup.CompareTag("PowerUp"))
+            {
+                Powerup.SetActive(true);
+            }
+
+        }
+    }
+    // Update is called once per frame
+    void CoinRespawn()
+    {
         foreach (GameObject obj in objs)
         {
             if (obj.CompareTag("Coin"))
@@ -26,15 +54,5 @@ public class Manager2 : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        objs = GameObject.FindGameObjectsWithTag("Coin");
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

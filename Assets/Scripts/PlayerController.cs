@@ -9,20 +9,25 @@ public class PlayerController : MonoBehaviour
     // rate of turning's speed
    private float turnSpeed = 90.0f;
 
+    // player movement inputs
    private float horizontalInput;
    private float verticalInput;
 
+    // If player has powerup
     bool hasPowerUp = false;
 
 
     public Vector3 jump;
     public float jumpSpeed = 0.5f;
+    // if player is grounded
     public bool isGrounded;
     Rigidbody rb;
     public AudioSource JumpSound;
     private GameObject[] objs;
     public ParticleSystem CoinGet;
-    
+    public GameObject PowerUpObject;
+    // If player is invulnerable (Unused)
+   // public bool Invuln = false;
 
     // Start is called before the first frame update
     void Start()
@@ -74,7 +79,8 @@ public class PlayerController : MonoBehaviour
             speed = 10.0f;
             turnSpeed = 180.0f;
             StartCoroutine(PowerUpCountdown());
-            
+            PowerUpObject.SetActive(true);
+            //Invuln = true;
         }
     }
 
@@ -82,6 +88,8 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(8);
         hasPowerUp = false;
+        PowerUpObject.SetActive(false);
+        //Invuln = false;
         speed = 5.0f;
         turnSpeed = 90.0f;
     }
